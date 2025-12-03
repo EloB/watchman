@@ -1,7 +1,7 @@
 FROM debian:trixie-slim AS build
 
 ARG WATCHMAN_COMMIT=ac8dcba0da5e8b834626b194a1d2ff1ddcee328b
-ARG TARGETARCH=amd64
+ARG TARGETARCH
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Etc/UTC
