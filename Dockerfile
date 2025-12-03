@@ -45,5 +45,5 @@ dpkg-deb --build debian watchman.deb
 rm -rf /var/lib/apt/lists/*
 DOCKER_RUN_EOF
 
-FROM debian:trixie-slim AS artifact
+FROM scratch
 COPY --from=build /usr/src/watchman/watchman.deb /watchman.deb
