@@ -3,6 +3,9 @@ FROM debian:trixie-slim AS build
 ARG WATCHMAN_COMMIT=ac8dcba0da5e8b834626b194a1d2ff1ddcee328b
 ARG TARGETARCH=amd64
 
+ENV DEBIAN_FRONTEND=noninteractive
+ENV TZ=Etc/UTC
+
 WORKDIR /usr/src/watchman
 
 RUN <<'DOCKER_RUN_EOF'
@@ -16,7 +19,6 @@ git fetch --depth=1 origin "$WATCHMAN_COMMIT"
 git checkout "$WATCHMAN_COMMIT"
 python3 -m venv .venv
 . .venv/bin/activate
-./install-system-packages.sh 
 update-alternatives --install /usr/bin/c++ c++ /usr/bin/g++-12 100
 update-alternatives --install /usr/bin/cc cc /usr/bin/gcc-12 100
 update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-12 100
